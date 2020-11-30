@@ -1,10 +1,12 @@
 import tweepy
+from SimpleTwitterBot import ACCESS_TOKEN, ACCESS_TOKEN_SECRET, API_KEY, API_SECRET_KEY
 
-def get_twitter_api():
-    ACCESS_TOKEN = "1333083696757260289-7XGWPCYW53YvDENFTQ5GzCG2mvNODE"
-    ACCESS_TOKEN_SECRET = "zIzYpUx7aLEJHcZmG4DWIs37WsS2VY6DsH2f9OIOMt0G5"
-    API_KEY = "AGlR4lTVXoFnn2MHImSLTTb9R"
-    API_SECRET_KEY = "MsNVEf9WSPUTTLmyBa04TTLRrBsFjnkavRgK2kGDmrm0LaR5yt"
+
+def get_twitter_api(API_SECRET_KEY=None, API_KEY=None, ACCESS_TOKEN_SECRET=None, ACCESS_TOKEN=None):
+    ACCESS_TOKEN = ACCESS_TOKEN
+    ACCESS_TOKEN_SECRET = ACCESS_TOKEN_SECRET
+    API_KEY = API_KEY
+    API_SECRET_KEY = API_SECRET_KEY
 
     auth = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
     auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
@@ -22,7 +24,7 @@ def collect_twitter_data(api,twitter_user):
 
 
 def main():
-    api=get_twitter_api()
+    api=get_twitter_api(API_SECRET_KEY, API_KEY, ACCESS_TOKEN_SECRET, ACCESS_TOKEN)
     favorite_data,retweet_data=collect_twitter_data(api,"@actorvijay")
     print(favorite_data)
     print(retweet_data)
